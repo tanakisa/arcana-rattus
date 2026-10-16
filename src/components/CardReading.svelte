@@ -58,7 +58,7 @@
       >
         <span class="card-ornament" aria-hidden="true"></span>
         {#if currentCard.image}
-          <img class="card-image" src={currentCard.image} alt="">
+          <img class="card-image" src={`${import.meta.env.BASE_URL}${currentCard.image.replace(/^\/+/, "")}`} alt="">
         {/if}
         <div class="card-heading">
           <span class="card-face-title">{currentCard.name}</span>

@@ -7,6 +7,17 @@ An interactive, stream-ready tarot card pull overlay built with Svelte and Vite.
 Install dependencies with `npm install`, then start the local server with `npm run dev`.
 Use `npm run build` to create a production build in `dist/`.
 
+## Windows desktop app
+
+Run `npm install`, then `npm run desktop:dev` to open the fullscreen desktop
+window during development. Press `F11` to toggle fullscreen; press `Escape` to
+leave fullscreen.
+
+Run `npm run desktop:build` to create a portable Windows x64 executable in
+`release/`. Copy `Arcana-Rattus-0.1.0-portable-x64.exe` to Windows and run it
+directly; it does not require a separate installation. Unsigned builds may show
+a Windows SmartScreen warning.
+
 ## Card artwork
 
 Place card-front artwork in `public/cards/` and set each card's `image` value in
