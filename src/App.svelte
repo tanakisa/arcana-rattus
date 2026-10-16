@@ -17,12 +17,12 @@
   </header>
 
   <main>
-    <p class="eyebrow">A reading from the undercity</p>
+    <p class="eyebrow">A reading from the royal sewers</p>
     <h1>What stirs beneath?</h1>
     <CardReading />
   </main>
 
   <footer class="footer">
-    <span>Five signs</span><span>One undercity</span><span>Your fate, for now</span>
+    <a href="https://www.twitch.tv/tanaki_sa" target="_blank" rel="noreferrer">twitch.tv/tanaki_sa</a>
   </footer>
 </div>

@@ -3,6 +3,7 @@
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let currentCard = null;
+  let currentIsReversed = false;
   let lastCardIndex = -1;
   let pulling = false;
 
@@ -18,8 +19,15 @@
 
     window.setTimeout(() => {
       currentCard = cards[index];
+      currentIsReversed = Math.random() < 0.2;
       pulling = false;
     }, reducedMotion.matches ? 0 : 440);
+  }
+
+  function resetDeck() {
+    if (pulling) return;
+    currentCard = null;
+    currentIsReversed = false;
   }
 </script>
 
@@ -39,35 +47,43 @@
     </button>
 
     {#if currentCard}
-      <article class:visible={!pulling} class:shuffling={pulling} class="card-face" aria-label={currentCard.name}>
+      <button
+        class:visible={!pulling}
+        class:shuffling={pulling}
+        class:reversed={currentIsReversed}
+        class="card-face"
+        type="button"
+        aria-label={`${currentCard.name}, ${currentIsReversed ? "reversed" : "upright"}`}
+        on:click={resetDeck}
+      >
         <span class="card-ornament" aria-hidden="true"></span>
         {#if currentCard.image}
-          <img class="card-image" src={currentCard.image} alt={currentCard.name}>
+          <img class="card-image" src={currentCard.image} alt="">
         {/if}
-      </article>
+        <div class="card-heading">
+          <span class="card-face-title">{currentCard.name}</span>
+          <p class="tarot-counterpart">({currentCard.tarot})</p>
+        </div>
+      </button>
     {/if}
   </div>
 
-  <p class="deck-hint" hidden={currentCard !== null}>
+  <p class="deck-hint" aria-live="polite">
     <span class="hint-star" aria-hidden="true">✦</span>
-    <span>Click to draw your card</span>
+    <span>{currentCard ? `${currentCard.name}${currentIsReversed ? " (rev)" : ""}` : "Click to draw your card"}</span>
     <span class="hint-star" aria-hidden="true">✦</span>
   </p>
 
   <div class:visible={currentCard !== null} class="result" aria-live="polite">
     {#if currentCard}
-      <h2 class="card-title">{currentCard.name}</h2>
-      <p class="card-keywords">{currentCard.words}</p>
+      <p class:reversed={currentIsReversed} class="card-orientation">
+        {currentIsReversed ? "Reversed" : "Upright"}
+      </p>
+      <ul class="card-keywords" aria-label={`${currentIsReversed ? "Reversed" : "Upright"} keywords`}>
+        {#each currentCard[currentIsReversed ? "reversed" : "upright"] as keyword}
+          <li>{keyword}</li>
+        {/each}
+      </ul>
     {/if}
   </div>
-
-  <button
-    class:visible={currentCard !== null}
-    class="draw-again"
-    type="button"
-    disabled={currentCard === null || pulling}
-    on:click={pullCard}
-  >
-    Draw again
-  </button>
 </section>
