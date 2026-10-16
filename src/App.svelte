@@ -18,7 +18,7 @@
 
   <main>
     <p class="eyebrow">A reading from the royal sewers</p>
-    <h1>What stirs beneath?</h1>
+    <h1>Daily Tarot</h1>
     <CardReading />
   </main>
 
