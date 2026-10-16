@@ -244,6 +244,7 @@ h1 {
 
 .card-ornament {
   position: absolute;
+  z-index: 2;
   inset: 19px;
   border: 1px solid rgba(229, 199, 121, .26);
   border-radius: 9px;
@@ -258,21 +259,22 @@ h1 {
   height: 100%;
   border-radius: 5px;
   object-fit: contain;
-  padding: 48px 25px 25px;
+  padding: 48px 25px;
 }
 
 .card-heading {
   position: absolute;
   z-index: 2;
-  top: 24px;
-  right: 24px;
-  left: 24px;
-  padding: 7px 4px 10px;
-  background: linear-gradient(180deg, rgba(23, 18, 31, .94), rgba(23, 18, 31, .68) 76%, transparent);
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  padding: 7px 8px 10px;
+  background: linear-gradient(180deg, rgba(23, 18, 31, .96), rgba(23, 18, 31, .78) 76%, transparent);
   text-align: center;
 }
 
 .card-face-title {
+  display: block;
   margin: 0;
   color: #f1e8d8;
   font-family: "Cinzel", serif;
@@ -284,11 +286,32 @@ h1 {
 }
 
 .tarot-counterpart {
-  margin: 4px 0 0;
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  padding: 10px 8px 7px;
+  background: linear-gradient(0deg, rgba(23, 18, 31, .96), rgba(23, 18, 31, .78) 76%, transparent);
   color: rgba(240, 231, 211, .68);
   font-size: 11px;
   letter-spacing: .08em;
+  text-align: center;
   text-shadow: 0 1px 5px rgba(0, 0, 0, .9);
+}
+
+/* Keep both labels upright and on the same edge when the card is reversed. */
+.card-face.reversed .card-heading {
+  top: auto;
+  bottom: 20px;
+  transform: rotate(180deg);
+}
+
+.card-face.reversed .tarot-counterpart {
+  top: 20px;
+  bottom: auto;
+  transform: rotate(180deg);
 }
 
 .result {

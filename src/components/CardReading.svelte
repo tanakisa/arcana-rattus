@@ -62,8 +62,8 @@
         {/if}
         <div class="card-heading">
           <span class="card-face-title">{currentCard.name}</span>
-          <p class="tarot-counterpart">({currentCard.tarot})</p>
         </div>
+        <p class="tarot-counterpart">({currentCard.tarot})</p>
       </button>
     {/if}
   </div>
